@@ -13,6 +13,7 @@ $(function(){
 });
 
 function saveToWatchlist(imdbID) {
+    console.log(imdbID);
     var movie = movieData.find(function(currentMovie) {
         return currentMovie.imdbID == imdbID;
     var watchlistJSON = localStorage.getItem('watchlist');
