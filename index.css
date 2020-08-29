@@ -1,9 +1,9 @@
 body {
-	background-color: #B2E9FD;
+	background-image: linear-gradient(to right, #E0F1FF, #BBD7F0);
 }
 
 .header h2 {
-	color: #DC4247;
+	color: #A3895F;
 }
 
 .header p {
@@ -31,4 +31,13 @@ body {
 .movie {
 	padding: 10px;
 	margin: 10px;
+}
+
+.card {
+	background: #BBD7F0;
+}
+
+.card:hover {
+	background: #F0DBBB;
+	transition: all 0.3s ease-in-out 0s;
 }
