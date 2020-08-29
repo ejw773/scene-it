@@ -10,18 +10,17 @@ $(function(){
         let urlEncodedSearchString = encodeURIComponent(searchString);
         axios.get("http://www.omdbapi.com/?apikey=8534d2a7&s=" + urlEncodedSearchString)
         .then(function(response) {
-            console.log(response.data);
             $('.movie-container').empty();
             renderMovies(response.data.Search);    
         })
     }) 
 });
 
+
+// Feature to add: do not allow duplicates
 function saveToWatchlist(imdbID) {
-    console.log(imdbID);
     axios.get("http://www.omdbapi.com/?apikey=8534d2a7&i=" + imdbID)
     .then(function(response) {
-        console.log(response.data);
         var movieToAdd = response.data;
         var watchlistJSON = localStorage.getItem('watchlist');
         var watchlist = JSON.parse(watchlistJSON);
