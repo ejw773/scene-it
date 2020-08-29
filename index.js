@@ -6,26 +6,32 @@ $(function(){
     }
     $('form').submit(function(e){
         e.preventDefault();
-        $('.movie-container').empty();
-        renderMovies(movieData);
-    })
-    
+        let searchString = document.getElementById("search-me").value;
+        let urlEncodedSearchString = encodeURIComponent(searchString);
+        axios.get("http://www.omdbapi.com/?apikey=8534d2a7&s=" + urlEncodedSearchString)
+        .then(function(response) {
+            console.log(response.data);
+            $('.movie-container').empty();
+            renderMovies(response.data.Search);    
+        })
+    }) 
 });
 
 function saveToWatchlist(imdbID) {
     console.log(imdbID);
-    var movie = movieData.find(function(currentMovie) {
-        return currentMovie.imdbID == imdbID;
-    var watchlistJSON = localStorage.getItem('watchlist');
-    var watchlist = JSON.parse(watchlistJSON);
-    if (watchlist === null) {
-        watchlist = [];
-    } else {
+    axios.get("http://www.omdbapi.com/?apikey=8534d2a7&i=" + imdbID)
+    .then(function(response) {
+        console.log(response.data);
+        var movieToAdd = response.data;
+        var watchlistJSON = localStorage.getItem('watchlist');
         var watchlist = JSON.parse(watchlistJSON);
-    };
-    console.log(imdbID);
-    watchlist.push(movie);
-    watchlistJSON = JSON.stringify(watchlist);
-    localStorage.setItem('watchlist', watchlistJSON);
-    });
+        if (watchlist === null) {
+            watchlist = [];
+        } else {
+            var watchlist = JSON.parse(watchlistJSON);
+        };
+        watchlist.push(movieToAdd);
+        watchlistJSON = JSON.stringify(watchlist);
+        localStorage.setItem('watchlist', watchlistJSON);
+    })
 }
