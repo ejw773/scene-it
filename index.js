@@ -8,7 +8,7 @@ $(function(){
         e.preventDefault();
         let searchString = document.getElementById("search-me").value;
         let urlEncodedSearchString = encodeURIComponent(searchString);
-        axios.get("http://www.omdbapi.com/?apikey=8534d2a7&s=" + urlEncodedSearchString)
+        axios.get("https://www.omdbapi.com/?apikey=8534d2a7&s=" + urlEncodedSearchString)
         .then(function(response) {
             $('.movie-container').empty();
             renderMovies(response.data.Search);    
@@ -19,7 +19,7 @@ $(function(){
 
 // Feature to add: do not allow duplicates
 function saveToWatchlist(imdbID) {
-    axios.get("http://www.omdbapi.com/?apikey=8534d2a7&i=" + imdbID)
+    axios.get("https://www.omdbapi.com/?apikey=8534d2a7&i=" + imdbID)
     .then(function(response) {
         var movieToAdd = response.data;
         var watchlistJSON = localStorage.getItem('watchlist');
