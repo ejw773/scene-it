@@ -1,3 +1,3 @@
 # scene-it: A simple tool for building a movie wishlist
 
-Completed as part of a class at DigitalCrafts
+Completed as a class requirement for DigitalCrafts
